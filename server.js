@@ -4,11 +4,17 @@ const cors = require("cors")
 const app = express()
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+require('dotenv').config()
+const PORT = process.env.PORT || 3000
+
+
+const JWT_KEY = process.env.JWT_KEY
+const DB_URL = process.env.DB_URL
 
 app.use(cors())
 
 app.use(express.json())
-mongoose.connect("mongodb+srv://soniyataneja23:Soneja2303@cluster0.bw5esol.mongodb.net/signup").then(()=> console.log("mongodb connected"))
+mongoose.connect(DB_URL).then(()=> console.log("mongodb connected"))
 .catch(err => console.error("mongodb connection error", err))
 
 const User = mongoose.model("users", {
@@ -82,7 +88,7 @@ app.post('/login', async (req,res) => {
             })
         }
 
-        const token = jwt.sign({username: loginUsername},"123456",{expiresIn: "7d"})
+        const token = jwt.sign({username: loginUsername},JWT_KEY,{expiresIn: "7d"})
 
         res.status(200).json({message: "login successful",
             ok:true,
@@ -100,14 +106,15 @@ function authenticateToken(req,res,next){
     const token = authHeader && authHeader.split(" ")[1]
       if(!token) {return res.status(401).json({message: "Token missing"});}
 
-      jwt.verify(token,"123456",(err,user)=>{
+      jwt.verify(token,JWT_KEY,(err,user)=>{
         if(err){
             return res.status(400).json({message: "token invalid"})
         }
     
       req.user = user
-      })
       next()
+      })
+      
       
 
 
@@ -131,4 +138,4 @@ app.get('/dashboard',authenticateToken,async(req,res)=>{
 })
 
 
-app.listen(3000)
+app.listen(PORT)

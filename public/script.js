@@ -9,6 +9,36 @@ signupForm.addEventListener("submit",async function(event){
     const password = document.getElementById("signupPassword").value
     const username = document.getElementById("signupUsername").value
 
+          if (!firstName) {
+        alert("First name is required");
+        return;
+      }
+      if (!lastName) {
+        alert("Last name is required");
+        return;
+      }
+      if (!username) {
+        alert("Username is required");
+        return;
+      }
+      if (!email) {
+        alert("Email is required");
+        return;
+      }
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email");
+        return;
+      }
+      if (!password) {
+        alert("Password is required");
+        return;
+      }
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long");
+        return;
+      }
+
+
     const response = await fetch("http://localhost:3000/signup",{
     method: "POST",
     headers:{
@@ -36,6 +66,15 @@ loginForm.addEventListener("submit",async function(event){
     event.preventDefault()
     const loginUsername = document.getElementById("loginUsername").value
     const loginPassword = document.getElementById("loginPassword").value
+if (!loginUsername) {
+        alert("Username is required");
+        return;
+      }
+      if (!loginPassword) {
+        alert("Password is required");
+        return;
+      }
+
     const loginResponse  = await fetch("http://localhost:3000/login",{
         method: "POST",
         headers: {
@@ -80,6 +119,11 @@ else{
 
 })
 }
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email.toLowerCase());
+  }
 })
 
 
