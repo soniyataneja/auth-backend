@@ -1,0 +1,33 @@
+body{
+    margin:0;
+    padding: 0;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    background-color: #1e1eff;
+    height: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+   gap: 15px;
+    
+}
+
+button{
+    height: 35px;
+    border-radius: 10px;
+    background-color: #989898;
+}
+
+textarea{
+    border-radius: 5px;
+}
+a{
+    color: black;
+}
