@@ -68,6 +68,10 @@ app.post('/signup', async function(req,res){
     }
 })
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+});
+
 app.post('/login', async (req,res) => {
     const{loginUsername, loginPassword} = req.body
     if(!loginUsername || !loginPassword){
