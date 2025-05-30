@@ -39,7 +39,7 @@ signupForm.addEventListener("submit",async function(event){
       }
 
 
-    const response = await fetch("http://localhost:3000/signup",{
+    const response = await fetch("https://auth-backend-6kvp.onrender.com/signup",{
     method: "POST",
     headers:{
          "Content-Type": "application/json"
@@ -75,7 +75,7 @@ if (!loginUsername) {
         return;
       }
 
-    const loginResponse  = await fetch("http://localhost:3000/login",{
+    const loginResponse  = await fetch("https://auth-backend-6kvp.onrender.com/login",{
         method: "POST",
         headers: {
             "content-type" : "application/json"
@@ -102,7 +102,7 @@ dashboard.addEventListener("click",async function(){
     if(!token){
         alert("you are not logged in")
     }
-    const dashboardResponse = await fetch("http://localhost:3000/dashboard",{
+    const dashboardResponse = await fetch("https://auth-backend-6kvp.onrender.com/dashboard",{
         method:"GET",
         headers:{ "Authorization":`Bearer ${token}`},
         "Content-type": "application/json"
