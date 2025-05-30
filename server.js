@@ -69,7 +69,7 @@ app.post('/signup', async function(req,res){
 })
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.post('/login', async (req,res) => {
